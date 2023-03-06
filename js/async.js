@@ -1,11 +1,28 @@
 
-const processOrder = (customer) => {
-    console.log(`Processing Order for customer 1`);
+                    // annonymus function
+                    const takeOrder =(customer,callback)=> {
+                        console.log(`take order for ${customer}`);
+                        callback(customer);
+                    }
 
-    setTimeout(() => {
-            console.log(`Order Processed for customer 1`); // set this asynchronous into a queue
-    }, 3000);
-};
-console.log(`take order for customer 1`);
-processOrder();
-console.log(`completed order for customer 1`);
+                    const processOrder = (customer,callback) => {
+                        console.log(`Processing Order for ${customer}`);
+
+                        setTimeout(() => {
+                                console.log(`cooking completed`); // set this asynchronous into a queue
+                                console.log(`Order Processed for ${customer}`);
+                                callback(customer);
+                        }, 3000);
+                    ;
+                    };
+
+                    const completedOrder = (customer) => {
+                        console.log(`completed order for ${customer} `);
+                    }
+
+                    takeOrder('customer 1',(customer)=> {
+                        processOrder(customer,(customer)=>{
+                            completedOrder(customer);
+                        });
+                    });
+
